@@ -65,13 +65,13 @@ string Filme::toLowerString(string dado)
     {
         dadoLower += tolower(dado[indice]);
     }
-
+    cout << dadoLower << endl;
     return dadoLower;
 }
 
 bool Filme::operator<(Filme & filmeComparado)
 {
-    if (toLowerString(nome) < toLowerString(filmeComparado.getNome()))
+    if (toLowerString(this->getNome()) < toLowerString(filmeComparado.getNome()))
     {
         return true;
     }
@@ -81,7 +81,7 @@ bool Filme::operator<(Filme & filmeComparado)
 
 bool Filme::operator>(Filme & filmeComparado)
 {
-    if (toLowerString(nome) > toLowerString(filmeComparado.getNome()))
+    if (toLowerString(this->getNome()) > toLowerString(filmeComparado.getNome()))
     {
         return true;
     }
@@ -91,7 +91,7 @@ bool Filme::operator>(Filme & filmeComparado)
 
 bool Filme::operator==(Filme & filmeComparado)
 {
-    if (toLowerString(nome) == toLowerString(filmeComparado.getNome()))
+    if (toLowerString(this->nome) == toLowerString(filmeComparado.nome))
     {
         return true;
     }

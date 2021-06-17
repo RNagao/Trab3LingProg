@@ -30,8 +30,12 @@ Catalogo::Catalogo()
                 palavra += linha[indice];
             }
         }
-
-        Filme filme (dados[0], dados[1], stod(dados[2]));
+        dados.push_back(palavra);
+        cout << dados.size() << endl;
+        cout << dados[0] << endl;
+        cout << dados[1] << endl;
+        cout << dados[2] << endl;
+        Filme filme(dados[0], dados[1], stod(dados[2]));
         vetorFilmes.push_back(filme);
         dados.clear();
     }
@@ -61,15 +65,16 @@ void Catalogo::operator+=(Filme& filmeAdicionado)
 
     for (indice = 0; indice < vetorFilmes.size(); indice++)
     {
-        if (vetorFilmes[indice] == filmeAdicionado)
+        if (vetorFilmes[indice].getNome() == filmeAdicionado.getNome())
         {
             cout << "O filme ja foi registrado" << endl;
             return ;
         }
     }
-
+    
     vetorFilmes.push_back(filmeAdicionado);
     ordenaFilmesNome();
+
 }
 
 void Catalogo::operator+=(vector <Filme>& vetorLote)
@@ -88,7 +93,7 @@ void Catalogo::operator+=(vector <Filme>& vetorLote)
 
         for (indiceAux = 0; indiceAux < vetorFilmes.size(); indiceAux++)
         {
-            if (vetorFilmes[indiceAux] == vetorLote[indice])
+            if (vetorFilmes[indiceAux].getNome() == vetorLote[indice].getNome())
             {
                 cout << "O filme ja foi registrado" << endl;
                 filmeExiste = true;
@@ -97,6 +102,7 @@ void Catalogo::operator+=(vector <Filme>& vetorLote)
 
         if (filmeExiste == false)
         {
+            cout << indice << endl;
             it = vetorFilmes.end();
             vetorFilmes.insert(it, vetorLote[indice]);
         }
@@ -109,11 +115,18 @@ void Catalogo::operator-=(Filme& filmeRemovido)
 {
     unsigned indice;
 
+    if (vetorFilmes.size() == 0)
+    {
+        cout << "Catalogo vazio" << endl;
+        return;
+    }
+
     for (indice = 0; indice < vetorFilmes.size(); indice++)
     {
-        if (vetorFilmes[indice] == filmeRemovido)
+        if (vetorFilmes[indice].getNome() == filmeRemovido.getNome())
         {
             vetorFilmes.erase(vetorFilmes.begin() + indice);
+            return ;
         }
     }
 }
@@ -121,13 +134,18 @@ void Catalogo::operator-=(Filme& filmeRemovido)
 void Catalogo::operator-=(vector <Filme>& vetorLote)
 {
     unsigned indice, indiceAux;
-    vector<Filme>::iterator it;
+
+    if (vetorFilmes.size() == 0)
+    {
+        cout << "Catalogo vazio" << endl;
+        return;
+    }
 
     for (indice = 0; indice < vetorLote.size(); indice++)
     {
         for (indiceAux = 0; indiceAux < vetorFilmes.size(); indice++)
         {
-            if (vetorLote[indice] == vetorFilmes[indiceAux])
+            if (vetorLote[indice].getNome() == vetorFilmes[indiceAux].getNome())
             {
                 vetorFilmes.erase(vetorFilmes.begin() + indice);
             }
@@ -249,9 +267,9 @@ void Catalogo::ordenaFilmesNome()
 
     for (indice = 0; indice < (vetorFilmes.size() - 1); indice++)
     {
-        for (indiceAux = (indice + 1); indiceAux < vetorFilmes.size(); indice++)
+        for (indiceAux = (indice + 1); indiceAux < vetorFilmes.size(); indiceAux++)
         {
-            if (vetorFilmes[indice] < vetorFilmes[indiceAux])
+            if (vetorFilmes[indice].getNome() < vetorFilmes[indiceAux].getNome())
             {
                 aux = vetorFilmes[indice];
                 vetorFilmes[indice] = vetorFilmes[indiceAux];

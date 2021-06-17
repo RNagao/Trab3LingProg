@@ -46,15 +46,16 @@ int main()
                 cout << "\nADICIONAR FILME" << endl;
                 while (continuar == true)
                 {
-                    Filme filme ;
+                    cout << "Diga o nome do filme: " << endl;
+                    cin.ignore();
+                    getline(cin, nome);
+                    cout << "Diga a produtora do filme: " << endl;
+                    getline(cin, produtora);
+                    cout << "Diga a avaliacao do filme:" << endl;
+                    getline(cin, nota);
+                    Filme filme(nome, produtora, stod(nota));
 
-                    cout << "Diga o nome do filme, produtora e avaliacao separados por linha:" << endl;
-                    cout << "Exemplo:" << endl;
-                    cout << "Carros 2" << endl;
-                    cout << "Disney" << endl;
-                    cout << "7.3" << endl;
-                    cin >> filme;
-                    cout << "Deseja continuar?" << endl;
+                    cout << "Deseja adicionar mais um filme?" << endl;
                     cout << "Nao - Digite 0" << endl;
                     cout << "Sim - Digite qualquer tecla" << endl;
                     cin >> esc;
@@ -65,6 +66,11 @@ int main()
                         if (umFilme == true)
                         {
                             catalogo+=filme;
+                            continuar = false;
+                        }
+                        else
+                        {
+                            vetorFilmes.push_back(filme);
                         }
                     }
                     else
@@ -74,11 +80,15 @@ int main()
                     }
                 }
 
+                
                 if (umFilme == false)
                 {
                     catalogo += vetorFilmes;
+                    vetorFilmes.clear();
                 }
 
+                continuar = true;
+                umFilme = true;
                 cout << endl;
                 break;
             case 2:
@@ -86,8 +96,9 @@ int main()
                 while (continuar == true)
                 {
                     cout << "Diga o nome do filme" << endl;
-                    cin >> nome;
-                    cout << "Deseja continuar?" << endl;
+                    cin.ignore();
+                    getline(cin, nome);
+                    cout << "Deseja remover mais um filme?" << endl;
                     cout << "Nao - Digite 0" << endl;
                     cout << "Sim - Digite qualquer tecla" << endl;
                     cin >> esc;
@@ -110,7 +121,11 @@ int main()
                 if (umFilme == false)
                 {
                     catalogo -= vetorFilmes;
+                    vetorFilmes.clear();
                 }
+
+                continuar = true;
+                umFilme = true;
                 cout << endl;
                 break;
             case 3:
@@ -122,12 +137,12 @@ int main()
                 cout << "\nBUSCAR FILME" << endl;
                 cout << "Diga o nome do filme:" << endl;
                 cin >> nome;
-                cout << endl << catalogo(nome) << endl;
+                cout << endl << *catalogo(nome) << endl;
                 cout << endl;
                 break;
             case 5:
                 cout << "\nMELHOR AVALIADO" << endl;
-                cout << endl << catalogo.melhorAvaliado() << endl;
+                cout << endl << *catalogo.melhorAvaliado() << endl;
                 cout << endl;
                 break;
             case 6:
