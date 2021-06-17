@@ -31,10 +31,6 @@ Catalogo::Catalogo()
             }
         }
         dados.push_back(palavra);
-        cout << dados.size() << endl;
-        cout << dados[0] << endl;
-        cout << dados[1] << endl;
-        cout << dados[2] << endl;
         Filme filme(dados[0], dados[1], stod(dados[2]));
         vetorFilmes.push_back(filme);
         dados.clear();
