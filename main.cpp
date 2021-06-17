@@ -93,7 +93,6 @@ int main()
                 break;
             case 2:
                 cout << "\nREMOVER FILME" << endl;
-                cin.ignore();
                 while (continuar == true)
                 {
                     cout << "Diga o nome do filme" << endl;
@@ -108,13 +107,26 @@ int main()
                         continuar = false;
                         if (umFilme == true)
                         {
-                            catalogo -= *catalogo(nome);
+                            if (catalogo(nome))
+                            {
+                                catalogo -= *catalogo(nome);
+                            }
+                        }
+                        else
+                        {
+                            if (catalogo(nome))
+                            {
+                                vetorFilmes.push_back(*catalogo(nome));
+                            }
                         }
                     }
                     else
                     {
                         umFilme = false;
-                        vetorFilmes.push_back(*catalogo(nome));
+                        if (catalogo(nome))
+                        {
+                            vetorFilmes.push_back(*catalogo(nome));
+                        }
                     }
                 }
 
