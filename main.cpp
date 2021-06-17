@@ -93,10 +93,10 @@ int main()
                 break;
             case 2:
                 cout << "\nREMOVER FILME" << endl;
+                cin.ignore();
                 while (continuar == true)
                 {
                     cout << "Diga o nome do filme" << endl;
-                    cin.ignore();
                     getline(cin, nome);
                     cout << "Deseja remover mais um filme?" << endl;
                     cout << "Nao - Digite 0" << endl;
