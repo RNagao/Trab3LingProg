@@ -34,7 +34,6 @@ struct Filme
         string nome;
         string produtora;
         double nota;
-        string toLowerString(string);
 };
 
 #endif

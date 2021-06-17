@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <cctype>
 #include <iostream>
+#include <algorithm>
 
 #include "filme.h"
 
@@ -56,22 +57,9 @@ void Filme::setNota(double notaAtualizada)
     nota = notaAtualizada;
 }
 
-string Filme::toLowerString(string dado)
-{
-    string dadoLower;
-    unsigned indice;
-
-    for (indice = 0; indice < dadoLower.length(); indice++)
-    {
-        dadoLower += tolower(dado[indice]);
-    }
-    cout << dadoLower << endl;
-    return dadoLower;
-}
-
 bool Filme::operator<(Filme & filmeComparado)
 {
-    if (toLowerString(this->getNome()) < toLowerString(filmeComparado.getNome()))
+    if (this->getNome() < filmeComparado.getNome())
     {
         return true;
     }
@@ -81,7 +69,7 @@ bool Filme::operator<(Filme & filmeComparado)
 
 bool Filme::operator>(Filme & filmeComparado)
 {
-    if (toLowerString(this->getNome()) > toLowerString(filmeComparado.getNome()))
+    if (this->getNome() > filmeComparado.getNome())
     {
         return true;
     }
@@ -91,7 +79,7 @@ bool Filme::operator>(Filme & filmeComparado)
 
 bool Filme::operator==(Filme & filmeComparado)
 {
-    if (toLowerString(this->nome) == toLowerString(filmeComparado.nome))
+    if (this->getNome() == filmeComparado.getNome())
     {
         return true;
     }
